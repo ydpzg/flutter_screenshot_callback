@@ -10,7 +10,7 @@ class ScreenshotCallback {
       const MethodChannel('flutter.moum/screenshot_callback');
 
   /// Functions to execute when callback fired.
-  List<VoidCallback> onCallbacks = <VoidCallback>[];
+  List<Function> onCallbacks = <Function>[];
 
   /// If `true`, the user will be asked to grant storage permissions when
   /// callback is added.
@@ -33,7 +33,7 @@ class ScreenshotCallback {
   }
 
   /// Add void callback.
-  void addListener(VoidCallback callback) {
+  void addListener(Function callback) {
     assert(callback != null, 'A non-null callback must be provided.');
     onCallbacks.add(callback);
   }
@@ -42,7 +42,7 @@ class ScreenshotCallback {
     switch (call.method) {
       case 'onCallback':
         for (final callback in onCallbacks) {
-          callback();
+          callback(call.arguments);
         }
         break;
       default:

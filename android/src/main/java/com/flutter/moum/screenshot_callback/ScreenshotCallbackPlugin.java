@@ -51,7 +51,7 @@ public class ScreenshotCallbackPlugin implements MethodCallHandler {
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    channel.invokeMethod("onCallback", null);
+                                    channel.invokeMethod("onCallback", path);
                                 }
                             });
                         }
