@@ -48,10 +48,11 @@ public class ScreenshotCallbackPlugin implements MethodCallHandler {
                     public void onEvent(int event, String path) {
                         //Log.d(TAG, "androidX onEvent");
                         if (event == FileObserver.CREATE) {
+                            final String tempPath = path;
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    channel.invokeMethod("onCallback", path);
+                                    channel.invokeMethod("onCallback", tempPath);
                                 }
                             });
                         }
